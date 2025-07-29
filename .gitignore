@@ -1,0 +1,43 @@
+# Composer - Dependencies
+/vendor/
+
+# Environment
+# Jangan commit file .env, karena berisi kredensial sensitif.
+# Tim Anda sebaiknya memiliki file .env.example sebagai gantinya.
+.env
+.env.backup
+.env.testing
+.env.*.local
+
+# Laravel - File Aplikasi & Cache
+/bootstrap/cache/*.php
+/bootstrap/cache/config.php
+/bootstrap/cache/packages.php
+/bootstrap/cache/routes-v7.php
+/bootstrap/cache/services.php
+/storage/app/public
+/storage/framework/
+/storage/logs/*.log
+!/storage/logs/.gitignore
+
+# Laravel - Symlink Penyimpanan Publik
+/public/storage
+
+# Laravel Mix / Vite - Aset Frontend
+/public/hot
+/public/build
+/public/mix-manifest.json
+
+# Node - Dependencies Frontend
+/node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# IDE - Konfigurasi Editor
+.idea/
+.vscode/
+
+# OS - File Sistem
+.DS_Store
+Thumbs.db

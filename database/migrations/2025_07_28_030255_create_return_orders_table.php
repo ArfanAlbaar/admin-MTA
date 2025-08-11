@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('picture_proof');
             $table->string('bank_number')->nullable();
             $table->string('bank_name')->nullable();
-            $table->string('name_bank_number')->nullable;
-            $table->string('resi', 50)->nullable;
+            $table->string('name_bank_number')->nullable();
+            $table->string('resi', 50)->nullable();
             $table->text('notes')->nullable();
             $table->dateTime('return_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('status_return', [
@@ -44,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('return_orders');
+        Schema::dropIfExists('returns');
     }
 };

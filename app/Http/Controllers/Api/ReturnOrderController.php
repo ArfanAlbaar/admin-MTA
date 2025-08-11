@@ -16,7 +16,7 @@ class ReturnOrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'order_number' => 'required|string|max:50|exists:orders,order_number|unique:return_orders,order_number',
+            'order_number' => 'required|string|max:50|exists:orders,order_number|unique:returns,order_number',
             'return_reason' => 'required|string',
             'customer_name' => 'required|string',
             'picture_proof' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -39,7 +39,7 @@ class ReturnOrderController extends Controller
 
 
         // Find product name by order number
-        $productName = Order::where('order_number', $validated['order_number'])->first()->product_name ?? '';
+        $productName = Order::where('order_number', $validated['order_number'])->value('product_name');
 
         $return = ReturnOrder::create([
             ...$validated,

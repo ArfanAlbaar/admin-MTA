@@ -16,16 +16,19 @@ class ReturnOrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'order_number' => 'required|string|max:50',
+            'order_number' => 'required|string|max:50|exists:orders,order_number|unique:return_orders,order_number',
             'return_reason' => 'required|string',
             'customer_name' => 'required|string',
             'picture_proof' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bank_number' => 'nullable|string',
             'bank_name' => 'nullable|string',
             'name_bank_number' => 'nullable|string',
-            'resi' => 'required|string|max:50',
+            'resi' => 'nullable|string|max:50',
             'notes' => 'nullable|string',
             // 'status_return' => 'required|in:Menunggu Persetujuan,Disetujui,Ditolak,Menunggu Barang Diterima,Barang Diterima,Selesai,Dibatalkan' // Hapus validasi ini
+        ], [
+            'order_number.exists' => 'Nomor pesanan tidak ditemukan.',
+            'order_number.unique' => 'Pengajuan return untuk nomor pesanan ini sudah ada.',
         ]);
 
         if ($request->hasFile('picture_proof')) {

@@ -14,8 +14,17 @@ use App\Http\Controllers\ProductController;
 // });
 
 /** Login Routes **/
-Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+// Route untuk menampilkan form login (GET)
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+
+// Route untuk memproses login (POST)
 Route::post('/login', [AuthController::class, 'login']);
+
+// Route untuk logout (POST)
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /** Group Admin (Hanya admin bisa akses) **/

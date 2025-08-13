@@ -1,0 +1,21 @@
+services:
+    admin_mta:
+        image: mta_img
+        container_name: mta_con
+        build: .
+        ports:
+            - "9098:80"
+        env_file:
+            - .env
+        restart: always
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+            - ./storage:/var/www/storage
+            - ./bootstrap/cache:/var/www/bootstrap/cache
+        networks:
+            - laravel_net
+
+networks:
+    laravel_net:
+        driver: bridge
